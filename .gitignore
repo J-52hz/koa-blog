@@ -10,3 +10,5 @@ yarn.lock
 /src/config/Config.ts
 
 /src/ak.ts
+
+.vscode

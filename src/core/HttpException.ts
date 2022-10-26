@@ -2,6 +2,7 @@ import HttpCode, { CODE } from './code'
 
 // http异常
 export class HttpException extends Error {
+  public success?: boolean
   public message: string
   public errorCode: number
   public code: number
@@ -20,6 +21,7 @@ export class HttpException extends Error {
 export class ParameterException extends HttpException {
   constructor(msg?: string, errorCode?: CODE) {
     super()
+    this.success = false
     this.code = 200
     this.message = msg || HttpCode.getMessage(CODE.CODE_11001 || errorCode)
     this.errorCode = CODE.CODE_11001
@@ -33,6 +35,7 @@ export class Success extends HttpException {
   public session
   constructor(data?: any, msg = 'ok', code = 200, errorCode = 10000, responseType?: string, session?: string) {
     super()
+    this.success = true
     this.code = code //200查询成功，201操作成功
     this.message = msg
     this.errorCode = errorCode
@@ -49,6 +52,7 @@ export class Buffer extends Success {
   public isBuffer
   constructor(data?: any, responseType?: string, session?: string) {
     super()
+    this.success = true
     this.code = 200 //200查询成功，201操作成功
     this.message = 'ok'
     this.errorCode = CODE.CODE_10000
@@ -62,6 +66,7 @@ export class Buffer extends Success {
 export class NotFount extends HttpException {
   constructor(msg: string, errorCode: number) {
     super()
+    this.success = false
     this.code = 404
     this.message = msg || '资源未找到'
     this.errorCode = errorCode || 10001
@@ -71,6 +76,7 @@ export class NotFount extends HttpException {
 export class AuthFailed extends HttpException {
   constructor(msg?: string, errorCode?: number) {
     super()
+    this.success = false
     this.code = 401
     this.message = msg || '授权失败'
     this.errorCode = errorCode || 10002
@@ -80,6 +86,7 @@ export class AuthFailed extends HttpException {
 export class Forbbiden extends HttpException {
   constructor(msg: string, errorCode?: number) {
     super()
+    this.success = false
     this.code = 403
     this.message = msg || '禁止访问'
     this.errorCode = errorCode || 100006
@@ -90,6 +97,7 @@ export class Forbbiden extends HttpException {
 export class QueryFailed extends HttpException {
   constructor(msg?: string, errorCode?: number) {
     super()
+    this.success = false
     this.code = 500
     this.message = msg || '未查到匹配的数据'
     this.errorCode = errorCode || 100006
@@ -100,6 +108,7 @@ export class QueryFailed extends HttpException {
 export class DataBaseFailed extends HttpException {
   constructor(msg?: string, errorCode?: number) {
     super()
+    this.success = false
     this.code = 500
     this.message = msg || '数据库出错'
     this.errorCode = errorCode || 100005
