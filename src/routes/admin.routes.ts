@@ -1,9 +1,9 @@
 import KoaRouter from 'koa-router'
 import Config from '../config/Config'
-import validator from '../middlewares/common/validator'
-import register from '../common/apiJsonSchema/system/admin/register'
+import validator from '../middleware/common/validator'
+import register from '../common/apiJsonSchema/admin/register'
 
-import { verifyAdmin, handlePassword } from '../middlewares/admin.middleware'
+import { verifyAdmin, handlePassword } from '../middleware/admin.middleware'
 import AdminController from '../controller/admin.controller'
 const { create } = AdminController
 

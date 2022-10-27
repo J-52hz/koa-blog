@@ -1,9 +1,5 @@
-const dayjs = require('dayjs')
+import dayjs from 'dayjs'
 
-function formatTime(time: number) {
+export function formatTime(time: number) {
   return dayjs(time).format('YYYY-MM-DD HH:mm:ss')
-}
-
-module.exports = {
-  formatTime
 }

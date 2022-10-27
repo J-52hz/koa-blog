@@ -15,7 +15,7 @@ function initModels(sequelize) {
   const Article = _ll_article(sequelize, DataTypes)
   const ArticleComments = _ll_article_comments(sequelize, DataTypes)
   const ArticleCommentsReply = _ll_article_comments_reply(sequelize, DataTypes)
-  const Categorys = _ll_categorys(sequelize, DataTypes)
+  const Category = _ll_categorys(sequelize, DataTypes)
   const Comments = _ll_comments(sequelize, DataTypes)
   const CommentsReply = _ll_comments_reply(sequelize, DataTypes)
   const Permission = _ll_permissions(sequelize, DataTypes)
@@ -27,7 +27,7 @@ function initModels(sequelize) {
     Article,
     ArticleComments,
     ArticleCommentsReply,
-    Categorys,
+    Category,
     Comments,
     CommentsReply,
     Permission,

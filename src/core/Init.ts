@@ -5,7 +5,7 @@ import path from 'path'
 import { getAllFilesExport } from '../common/utils/utils'
 import Router from 'koa-router'
 import Config from '../config/Config'
-import catchError from '../middlewares/common/catchError'
+import catchError from '../middleware/common/catchError'
 import { initPlugin } from '../plugin/index'
 import '../models/index'
 class Init {
