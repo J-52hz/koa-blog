@@ -1,6 +1,5 @@
 import fs from 'fs'
 import path from 'path'
-import { Models } from '../typings/model'
 import { format } from './date'
 /**
  * 获取某个目录下所有文件的默认导出
@@ -91,7 +90,7 @@ export function lineToHumpObject(obj: Object) {
     }
   }
   return {
-    ...element,
+    ...element
   }
 }
 
@@ -114,7 +113,7 @@ export function humpToLineObject(obj: Object) {
     }
   }
   return {
-    ...element,
+    ...element
   }
 }
 
@@ -130,7 +129,7 @@ export function getTreeByList(list: Common.List, rootId: number, options?: Commo
   const attr = {
     id: options?.id || 'id',
     parentId: options?.parentId || 'parentId',
-    rootId,
+    rootId
   }
   const toTreeData = (
     data: Common.List,
@@ -147,7 +146,7 @@ export function getTreeByList(list: Common.List, rootId: number, options?: Commo
         const obj = {
           ...resData[i],
           id: resData[i][attr.id] as number,
-          children: [],
+          children: []
         }
         tree.push(obj as unknown as Common.TreeNode)
         resData.splice(i, 1)
@@ -162,7 +161,7 @@ export function getTreeByList(list: Common.List, rootId: number, options?: Commo
               const obj: Common.TreeNode = {
                 ...resData[j],
                 id: resData[j][attr.id] as number,
-                children: [],
+                children: []
               } as unknown as Common.TreeNode
               treeArrs[i].children.push(obj)
               resData.splice(j, 1)

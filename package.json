@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon ./src/app.ts",
     "build": "tsc && cross-env NODE_ENV=production node dist/src/app.js",
+    "pm2": "cross-env NODE_ENV=production pm2 start dist/src/app.js",
     "lint": "eslint . --ext .ts --fix"
   },
   "keywords": [],
