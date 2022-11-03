@@ -36,7 +36,7 @@ class Init {
 
   // http路由加载
   static async initLoadRouters() {
-    const dirPath = path.join(`${process.cwd()}/${Config.BASE}/routes/`)
+    const dirPath = path.join(`${process.cwd()}/${Config.BASE}/router/`)
     getAllFilesExport(dirPath, (file: Router) => {
       Init.app.use(file.routes())
     })
