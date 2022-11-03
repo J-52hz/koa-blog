@@ -36,17 +36,20 @@ async function verifyLogin(ctx: Context, next: Next) {
 async function verifyAuth(ctx: Context, next: Next) {
   const authorization = ctx.headers.authorization
   if (!authorization) {
-    throw new ParameterException('未传递token')
+    throw new ParameterException('未传递token', 10004)
   }
   const token = authorization.replace('Bearer ', '')
 
   //验证token，失败自动throw error
-  const res = jwt.verify(token, config.KEYS.PUBLIC_KEY, {
-    algorithms: ['RS256']
-  })
-
-  // 验证成功返回
-  throw new Success(res)
+  try {
+    jwt.verify(token, config.KEYS.PUBLIC_KEY, {
+      algorithms: ['RS256']
+    })
+  } catch (error) {
+    console.log(error)
+    throw new ParameterException('无效token', 10004)
+  }
+  await next()
 }
 
 export { verifyLogin, verifyAuth }

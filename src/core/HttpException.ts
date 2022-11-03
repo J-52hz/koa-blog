@@ -23,8 +23,8 @@ export class ParameterException extends HttpException {
     super()
     this.success = false
     this.code = 200
-    this.message = msg || HttpCode.getMessage(CODE.CODE_11001 || errorCode)
-    this.errorCode = CODE.CODE_11001
+    this.message = msg || HttpCode.getMessage(errorCode || CODE.CODE_11001)
+    this.errorCode = errorCode || CODE.CODE_11001
   }
 }
 
