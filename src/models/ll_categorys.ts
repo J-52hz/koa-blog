@@ -1,4 +1,5 @@
 import Sequelize from 'sequelize'
+
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
     'll_categorys',
@@ -6,26 +7,26 @@ module.exports = function (sequelize, DataTypes) {
       ll_id: {
         type: DataTypes.BIGINT,
         allowNull: false,
-        primaryKey: true,
+        primaryKey: true
       },
       ll_category_name: {
         type: DataTypes.STRING(20),
-        allowNull: true,
+        allowNull: true
       },
       ll_category_val: {
         type: DataTypes.STRING(10),
-        allowNull: true,
+        allowNull: true
       },
       ll_createdTime: {
         type: DataTypes.DATE,
         allowNull: true,
-        defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
+        defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
       },
       ll_updatedTime: {
         type: DataTypes.DATE,
         allowNull: true,
-        defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
-      },
+        defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
+      }
     },
     {
       sequelize,
@@ -36,9 +37,9 @@ module.exports = function (sequelize, DataTypes) {
           name: 'PRIMARY',
           unique: true,
           using: 'BTREE',
-          fields: [{ name: 'll_id' }],
-        },
-      ],
+          fields: [{ name: 'll_id' }]
+        }
+      ]
     }
   )
 }

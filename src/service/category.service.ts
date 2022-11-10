@@ -1,7 +1,8 @@
 import { Context } from 'koa'
 import { Op } from '../config/sequelize'
 import models from '../models/index'
-
+import { sequelize } from '../config/sequelize'
+import { QueryTypes } from 'sequelize'
 class CategoryService {
   async createCategory(ctx: Context) {
     const { ll_category_val, ll_category_name } = ctx.request.body
@@ -42,6 +43,13 @@ class CategoryService {
 
   async getAllCategory() {
     const data = await models.Category.findAll()
+    return data
+  }
+
+  async getArticleNumByCategoryGroup() {
+    const fragment =
+      'SELECT c.ll_category_val ,c.ll_category_name ,count(a.ll_category) as count FROM  ll_categorys c LEFT JOIN ll_article a ON c.ll_category_val = a.ll_category GROUP BY c.ll_category_val;'
+    const data = await sequelize.query(fragment, { type: QueryTypes.SELECT })
     return data
   }
 }

@@ -8,7 +8,14 @@ import { verifyAuth } from '../middleware/auth.middleware'
 
 const categoryRouter = new Router({ prefix: `${Config.API_PREFIX}category` })
 
-const { createCategory, deleteCategory, updateCategory, getAllCategory, getCategoryList } = CategoryController
+const {
+  createCategory,
+  deleteCategory,
+  updateCategory,
+  getAllCategory,
+  getCategoryList,
+  getArticleNumByCategoryGroup
+} = CategoryController
 
 // 增加分类
 categoryRouter.post('/addCategory', verifyAuth, validator(params_newCategory, 'body'), createCategory)
@@ -24,5 +31,8 @@ categoryRouter.post('/getAllCategory', verifyAuth, getAllCategory)
 
 // 查询分类列表
 categoryRouter.post('/getCategoryList', verifyAuth, validator(pagination, 'body'), getCategoryList)
+
+// 查询每个分类下的文章数
+categoryRouter.post('/getArticleNumByCategoryGroup', verifyAuth, getArticleNumByCategoryGroup)
 
 export default categoryRouter

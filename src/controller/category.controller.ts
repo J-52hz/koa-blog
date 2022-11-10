@@ -36,6 +36,11 @@ class CategoryController {
     const data = await service.getAllCategory()
     throw new Success(data)
   }
+
+  async getArticleNumByCategoryGroup() {
+    const data = await service.getArticleNumByCategoryGroup()
+    throw new Success(data)
+  }
 }
 
 export default new CategoryController()
