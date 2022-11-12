@@ -10,7 +10,7 @@ const isDev = process.env.NODE_ENV === 'development'
 export default class Config {
   // 是否是测试环境
   public static readonly IS_DEV = isDev
-  public static readonly IP = isDev ? 'localhost' : '81.68.114.203'
+  public static readonly IP = isDev ? 'localhost' : 'server'
   public static readonly USER_NAME = isDev ? 'root' : 'user'
   // 服务器端口
   public static readonly HTTP_PORT = 9002
@@ -26,7 +26,7 @@ export default class Config {
     HOST: Config.IP,
     PORT: 3306,
     USER_NAME: Config.USER_NAME,
-    PASSWORD: 'qiu364218.',
+    PASSWORD: 'password',
     CONNECTION_LIMIT: 60 * 60 * 1000,
     CONNECT_TIMEOUT: 1000 * 60 * 60 * 1000,
     ACQUIRE_TIMEOUT: 60 * 60 * 1000,
