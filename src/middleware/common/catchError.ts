@@ -32,6 +32,7 @@ export default async function catchError(ctx: Models.Ctx, next: Function) {
       } else {
         ctx.body = {
           msg: error.message,
+          state: error.code,
           errorCode: error.errorCode,
           data: error.data,
           success: error.success

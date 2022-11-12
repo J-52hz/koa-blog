@@ -46,9 +46,9 @@ class CategoryService {
     return data
   }
 
-  async getArticleNumByCategoryGroup() {
+  async getCategoryByGroup() {
     const fragment =
-      'SELECT c.ll_category_val ,c.ll_category_name ,count(a.ll_category) as count FROM  ll_categorys c LEFT JOIN ll_article a ON c.ll_category_val = a.ll_category GROUP BY c.ll_category_val;'
+      'SELECT c.ll_id, c.ll_category_val, c.ll_category_name ,count(a.ll_category) as count FROM  ll_categorys c LEFT JOIN ll_article a ON c.ll_category_val = a.ll_category GROUP BY c.ll_category_val;'
     const data = await sequelize.query(fragment, { type: QueryTypes.SELECT })
     return data
   }

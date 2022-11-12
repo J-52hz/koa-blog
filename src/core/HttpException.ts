@@ -44,6 +44,24 @@ export class Success extends HttpException {
     this.session = session
   }
 }
+
+// http请求失败
+export class Failed extends HttpException {
+  public data
+  public responseType
+  public session
+  constructor(data?: any, msg = '请求失败', code = 200, errorCode = 11002, responseType?: string, session?: string) {
+    super()
+    this.success = true
+    this.code = code //200查询成功，201操作成功
+    this.message = msg
+    this.errorCode = errorCode
+    this.data = data
+    this.responseType = responseType
+    this.session = session
+  }
+}
+
 // 返回文件流
 export class Buffer extends Success {
   public data
@@ -82,8 +100,8 @@ export class AuthFailed extends HttpException {
     this.errorCode = errorCode || 10002
   }
 }
-// Forbbiden
-export class Forbbiden extends HttpException {
+// Forbidden
+export class Forbidden extends HttpException {
   constructor(msg: string, errorCode?: number) {
     super()
     this.success = false

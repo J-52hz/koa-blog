@@ -38,6 +38,9 @@ export enum CODE {
    */
   CODE_11001 = 11001,
 
+  /**请求失败*/
+  CODE_11002 = 11002,
+
   /** 角色状态码*/
 
   /**
@@ -133,7 +136,7 @@ export enum CODE {
   /**Excel文件转储失败 */
   CODE_91003 = 91003,
   /**Excel文件转储过程中发生异常 */
-  CODE_91004 = 91004,
+  CODE_91004 = 91004
 }
 
 export default class HttpCode {
@@ -180,6 +183,7 @@ export default class HttpCode {
     [CODE.CODE_91002]: '该文件非Excel文件!',
     [CODE.CODE_91003]: 'Excel文件转储失败!',
     [CODE.CODE_91004]: 'Excel文件转储失败!',
+    [CODE.CODE_11002]: 'Excel文件转储失败!'
   }
   static getMessage(code: CODE) {
     return HttpCode.messageMap[code]

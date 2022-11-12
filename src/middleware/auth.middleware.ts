@@ -2,7 +2,7 @@ import { Context, Next } from 'koa'
 import service from '../service/admin.service'
 import md5password from '../common/utils/md5'
 import jwt from 'jsonwebtoken'
-import { QueryFailed, ParameterException, Success } from '../core/HttpException'
+import { AuthFailed, Forbidden } from '../core/HttpException'
 
 // const authService = require('../service/auth.service')
 import config from '../config/Config'
@@ -15,13 +15,13 @@ async function verifyLogin(ctx: Context, next: Next) {
   const result = await service.getAdminByName(ll_username)
 
   if (!result) {
-    throw new QueryFailed('用户未注册')
+    throw new Forbidden('用户未注册')
   }
 
   // 4、判断密码是否正确
   const encryptPassword = await md5password(ll_password)
   if (encryptPassword != result.ll_password) {
-    throw new QueryFailed('密码错误')
+    throw new Forbidden('密码错误')
   }
 
   ctx.state.user = {
@@ -34,9 +34,10 @@ async function verifyLogin(ctx: Context, next: Next) {
 
 // 验证token
 async function verifyAuth(ctx: Context, next: Next) {
-  const authorization = ctx.headers.authorization
+  const authorization = ctx.headers.authorization as string
+  console.log(ctx.headers)
   if (!authorization) {
-    throw new ParameterException('未传递token', 10004)
+    throw new AuthFailed('未传递token', 10004)
   }
   const token = authorization.replace('Bearer ', '')
 
@@ -47,7 +48,7 @@ async function verifyAuth(ctx: Context, next: Next) {
     })
   } catch (error) {
     console.log(error)
-    throw new ParameterException('无效token', 10004)
+    throw new AuthFailed('无效token', 10004)
   }
   await next()
 }

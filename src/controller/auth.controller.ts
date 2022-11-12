@@ -12,7 +12,7 @@ class AuthController {
       algorithm: 'RS256'
     })
 
-    throw new Success(token, '登陆成功')
+    throw new Success({ token }, '登陆成功')
   }
 
   async success(ctx: Context, next: Next) {

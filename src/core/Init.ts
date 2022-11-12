@@ -1,6 +1,7 @@
-import Koa from 'koa'
+import Koa, { Context } from 'koa'
 import http from 'http'
 import koaBody from 'koa-body'
+import cors from 'koa2-cors'
 import path from 'path'
 import { getAllFilesExport } from '../common/utils/utils'
 import Router from 'koa-router'
@@ -14,10 +15,25 @@ class Init {
   public static initCore(app: Koa<Koa.DefaultState, Koa.DefaultContext>, server: http.Server) {
     Init.app = app
     Init.server = server
+    Init.corsServer()
     Init.loadBodyParser()
     Init.initCatchError()
     Init.initLoadRouters()
     Init.initPlugin()
+  }
+
+  //处理跨域
+  public static corsServer() {
+    Init.app.use(
+      cors({
+        origin: '*',
+        maxAge: 5, //指定本次预检请求的有效期，单位为秒。
+        credentials: true, //是否允许发送Cookie
+        allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], //设置所允许的HTTP请求方法
+        allowHeaders: ['Content-Type', 'Authorization', 'Accept'], //设置服务器支持的所有头信息字段
+        exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'] //设置获取其他自定义字段
+      })
+    )
   }
 
   // 解析body参数
