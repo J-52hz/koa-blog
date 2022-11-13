@@ -26,7 +26,7 @@ export default class Config {
     HOST: Config.IP,
     PORT: 3306,
     USER_NAME: Config.USER_NAME,
-    PASSWORD: 'password',
+    PASSWORD: 'qiu364218.',
     CONNECTION_LIMIT: 60 * 60 * 1000,
     CONNECT_TIMEOUT: 1000 * 60 * 60 * 1000,
     ACQUIRE_TIMEOUT: 60 * 60 * 1000,

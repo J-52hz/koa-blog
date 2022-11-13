@@ -61,8 +61,8 @@ class ArticleService {
 
   async getArticleList(params) {
     interface RequestBody {
-      pageSize?: number
-      pageNum?: number
+      pageSize: number
+      pageNum: number
       ll_title?: string
       ll_category?: string
     }
@@ -81,11 +81,16 @@ class ArticleService {
 
     const res = await models.Article.findAndCountAll({
       where: filterCondition,
-      pageNum: (pageNum! * 1 - 1) * pageSize!,
+      pageNum: (pageNum * 1 - 1) * pageSize,
       pageSize: Number(pageSize)
     })
-
-    return res
+    const data = {
+      count: res.count,
+      articleList: res.rows,
+      currentPage: pageNum,
+      maxPage: Math.ceil(res.count / pageSize)
+    }
+    return data
   }
 
   async getRecentArticle() {
