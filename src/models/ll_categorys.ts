@@ -4,17 +4,17 @@ module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
     'll_categorys',
     {
-      ll_id: {
-        type: DataTypes.BIGINT,
+      ll_category_val: {
+        type: DataTypes.STRING(10),
         allowNull: false,
         primaryKey: true
       },
+      ll_id: {
+        type: DataTypes.BIGINT,
+        allowNull: false
+      },
       ll_category_name: {
         type: DataTypes.STRING(20),
-        allowNull: true
-      },
-      ll_category_val: {
-        type: DataTypes.STRING(10),
         allowNull: true
       },
       ll_createdTime: {
@@ -37,7 +37,7 @@ module.exports = function (sequelize, DataTypes) {
           name: 'PRIMARY',
           unique: true,
           using: 'BTREE',
-          fields: [{ name: 'll_id' }]
+          fields: [{ name: 'll_category_val' }]
         }
       ]
     }

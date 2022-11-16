@@ -35,7 +35,6 @@ async function verifyLogin(ctx: Context, next: Next) {
 // 验证token
 async function verifyAuth(ctx: Context, next: Next) {
   const authorization = ctx.headers.authorization as string
-  console.log(ctx.headers)
   if (!authorization) {
     throw new AuthFailed('未传递token', 10004)
   }

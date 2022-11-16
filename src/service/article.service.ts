@@ -79,11 +79,30 @@ class ArticleService {
     !ll_category && delete filterCondition.ll_category
     !ll_title && delete (filterCondition as Partial<typeof filterCondition>).ll_title
 
+    models.Article.belongsTo(models.Category, {
+      foreignKey: 'll_category',
+      as: 'category'
+    })
+
+    // models.Article.belongsTo(models.Category, { as: 'fk_category', foreignKey: { name: 'll_category' } })
+
     const res = await models.Article.findAndCountAll({
       where: filterCondition,
-      pageNum: (pageNum * 1 - 1) * pageSize,
-      pageSize: Number(pageSize)
+      limit: Number(pageSize),
+      offset: (pageNum - 1) * pageSize,
+      include: [
+        {
+          attributes: ['ll_category_name'],
+          model: models.Category,
+          as: 'category'
+        }
+      ]
     })
+
+    if (models.Article.associations.category) {
+      delete models.Article.associations.category
+    }
+
     const data = {
       count: res.count,
       articleList: res.rows,

@@ -6,57 +6,57 @@ module.exports = function (sequelize, DataTypes) {
       ll_id: {
         type: DataTypes.BIGINT,
         allowNull: false,
-        primaryKey: true,
+        primaryKey: true
       },
       ll_title: {
         type: DataTypes.TEXT,
-        allowNull: true,
+        allowNull: true
       },
       ll_introduce: {
         type: DataTypes.TEXT,
-        allowNull: true,
+        allowNull: true
       },
       ll_category: {
         type: DataTypes.STRING(20),
-        allowNull: true,
+        allowNull: true
       },
       ll_tags: {
         type: DataTypes.STRING(100),
-        allowNull: true,
+        allowNull: true
       },
       ll_visitedCounts: {
         type: DataTypes.BIGINT,
         allowNull: true,
-        defaultValue: 0,
+        defaultValue: 0
       },
       ll_likedCounts: {
         type: DataTypes.BIGINT,
         allowNull: true,
-        defaultValue: 0,
+        defaultValue: 0
       },
       ll_cover: {
         type: DataTypes.STRING(150),
-        allowNull: true,
+        allowNull: true
       },
       ll_createdTime: {
         type: DataTypes.DATE,
         allowNull: true,
-        defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
+        defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
       },
       ll_updatedTime: {
         type: DataTypes.DATE,
         allowNull: true,
         defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP'),
-        comment: '创建时间',
+        comment: '创建时间'
       },
       ll_content: {
         type: DataTypes.TEXT,
-        allowNull: true,
+        allowNull: true
       },
       ll_content_html: {
         type: DataTypes.TEXT,
-        allowNull: true,
-      },
+        allowNull: true
+      }
     },
     {
       sequelize,
@@ -67,9 +67,9 @@ module.exports = function (sequelize, DataTypes) {
           name: 'PRIMARY',
           unique: true,
           using: 'BTREE',
-          fields: [{ name: 'll_id' }],
-        },
-      ],
+          fields: [{ name: 'll_id' }]
+        }
+      ]
     }
   )
 }
