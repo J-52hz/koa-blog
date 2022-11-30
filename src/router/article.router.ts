@@ -8,7 +8,8 @@ import { verifyAuth } from '../middleware/auth.middleware'
 
 const articleRouter = new Router({ prefix: `${Config.API_PREFIX}article` })
 
-const { publish, remove, update, getSingleArticle, getArticleList, getRecentArticle } = ArticleController
+const { publish, remove, update, getSingleArticle, getArticleList, getRecentArticle, getAllArticle, getArticleByName } =
+  ArticleController
 
 // 创建文章
 articleRouter.post('/publish', verifyAuth, validator(params_article, 'body'), publish)
@@ -22,8 +23,14 @@ articleRouter.post('/update', verifyAuth, validator(params_id, 'body'), update)
 // 查询单个文章
 articleRouter.post('/getSingleArticle', verifyAuth, validator(params_id, 'body'), getSingleArticle)
 
+// articleRouter.post('/getArticleById', getArticleById)
+articleRouter.post('/getArticleByName', getArticleByName)
+
 // 查询文章列表
 articleRouter.post('/getArticleList', verifyAuth, validator(pagination, 'body'), getArticleList)
+
+// 查询所有文章
+articleRouter.post('/getAllArticle', getAllArticle)
 
 // 查询最近文章
 articleRouter.post('/getRecentArticle', verifyAuth, getRecentArticle)

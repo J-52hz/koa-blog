@@ -15,7 +15,7 @@ export default class Config {
   // 服务器端口
   public static readonly HTTP_PORT = 9002
   // 接口前缀
-  public static readonly API_PREFIX = '/api/'
+  public static readonly API_PREFIX = '/admin/api/'
   // 根目录
   public static readonly BASE = isDev ? 'src' : 'dist/src'
   // redis数据库

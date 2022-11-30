@@ -1,5 +1,5 @@
 import { Context } from 'koa'
-import { Op } from '../config/sequelize'
+import { Op } from '../config/Sequelize'
 import models from '../models/index'
 import { formatTime } from '../common/utils/format'
 
@@ -129,6 +129,20 @@ class ArticleService {
       order: [['ll_id', 'DESC']]
     })
 
+    return data
+  }
+
+  async getAllArticle() {
+    const data = await models.Article.findAll()
+    return data
+  }
+
+  async getArticleByName(ll_titleEng) {
+    const data = await models.Article.findOne({
+      where: {
+        ll_titleEng
+      }
+    })
     return data
   }
 }

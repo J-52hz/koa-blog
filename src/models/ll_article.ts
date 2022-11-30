@@ -12,6 +12,10 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.TEXT,
         allowNull: true
       },
+      ll_titleEng: {
+        type: DataTypes.TEXT,
+        allowNull: true
+      },
       ll_introduce: {
         type: DataTypes.TEXT,
         allowNull: true

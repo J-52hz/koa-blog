@@ -1,7 +1,7 @@
 import { Context } from 'koa'
-import { Op } from '../config/sequelize'
+import { Op } from '../config/Sequelize'
 import models from '../models/index'
-import { sequelize } from '../config/sequelize'
+import { sequelize } from '../config/Sequelize'
 import { QueryTypes } from 'sequelize'
 class CategoryService {
   async createCategory(ctx: Context) {

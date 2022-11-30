@@ -1,5 +1,5 @@
 import type { Context } from 'koa'
-import { Op } from '../config/sequelize'
+import { Op } from '../config/Sequelize'
 import models from '../models/index'
 
 class TagService {

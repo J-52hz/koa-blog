@@ -1,7 +1,16 @@
 import { Success, QueryFailed } from './../core/HttpException'
 import { Context, Next } from 'koa'
 import service from '../service/article.service'
-const { PublishArticle, removeArticle, updateArticle, getSingleArticleById, getArticleList, getRecentArticle } = service
+const {
+  PublishArticle,
+  removeArticle,
+  updateArticle,
+  getSingleArticleById,
+  getArticleList,
+  getRecentArticle,
+  getAllArticle,
+  getArticleByName
+} = service
 
 interface UpdateArticle {
   ll_id?: string
@@ -60,6 +69,18 @@ class ArticleController {
 
   async getRecentArticle(ctx: Context) {
     const res = await getRecentArticle()
+
+    throw new Success(res)
+  }
+
+  async getAllArticle() {
+    const res = await getAllArticle()
+
+    throw new Success(res)
+  }
+  async getArticleByName(ctx: Context) {
+    const { ll_titleEng } = ctx.request['body']
+    const res = await getArticleByName(ll_titleEng)
 
     throw new Success(res)
   }

@@ -55,6 +55,7 @@ class Init {
     const dirPath = path.join(`${process.cwd()}/${Config.BASE}/router/`)
     getAllFilesExport(dirPath, (file: Router) => {
       Init.app.use(file.routes())
+      Init.app.use(file.allowedMethods())
     })
   }
 

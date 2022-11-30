@@ -1,4 +1,4 @@
-import { sequelize } from '../config/sequelize'
+import { sequelize } from '../config/Sequelize'
 const DataTypes = require('sequelize').DataTypes
 const _ll_article = require('./ll_article')
 const _ll_article_comments = require('./ll_article_comments')
